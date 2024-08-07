@@ -21,8 +21,8 @@ import {
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem className="cursor-pointer">Profile</DropdownMenuItem>
-          <DropdownMenuItem className="cursor-pointer">Billing</DropdownMenuItem>
-          <DropdownMenuItem className="cursor-pointer">Subscription</DropdownMenuItem>
+          {/* <DropdownMenuItem className="cursor-pointer">Billing</DropdownMenuItem>
+          <DropdownMenuItem className="cursor-pointer">Subscription</DropdownMenuItem> */}
           <DropdownMenuSeparator />
           <DropdownMenuItem className="cursor-pointer">Log Out</DropdownMenuItem>
         </DropdownMenuContent>
