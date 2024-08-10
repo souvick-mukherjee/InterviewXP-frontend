@@ -1,14 +1,27 @@
 "use client";
-import {useTheme } from "next-themes";
+import { useTheme } from "next-themes";
 import Link from "next/link";
 import Container from "./ui/container";
 import { Button } from "./ui/button";
-import {  Menu, Moon, ShoppingCart, Sun  } from "lucide-react";
+import { Menu, Moon, ShoppingCart, Sun } from "lucide-react";
 import ProfileButton from "./ui/ProfileButton";
-import { Sheet,SheetTrigger,SheetContent } from "./ui/sheet";
+import { Sheet, SheetTrigger, SheetContent } from "./ui/sheet";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState, AppDispatch } from "@/lib/store";
+import { setUser, clearUser } from "@/lib/features/user/userSlice";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
-    const { theme, setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
+  const pathname = usePathname(); // Get the current pathname
+
+  const user = useSelector((state: RootState) => state.user);
+
+  // Define the routes where the profile or login/signup should be hidden
+  const hiddenRoutes = ['/register', '/login', '/forgot-password', '/reset-password', '/authenticate'];
+
+  const shouldHideProfileOrLogin = hiddenRoutes.includes(pathname);
+
   const routes = [
     { label: "Home", href: "/" },
     { label: "Courses", href: "/courses" },
@@ -20,7 +33,7 @@ const Header = () => {
       <Container>
         <div className="relative px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between w-full">
           <div className="flex items-center">
-          <Sheet>
+            <Sheet>
               <SheetTrigger>
                 <Menu className="h-6 md:hidden w-6" />
               </SheetTrigger>
@@ -42,22 +55,7 @@ const Header = () => {
               <h1 className="text-xl font-bold">InterviewXP</h1>
             </Link>
           </div>
-          {/* <nav className="mx-6  items-center space-x-4 lg:space-x-6 hidden md:block">
-            {routes.map((route, i) => (
-              <Button asChild variant="ghost" key={i}>
-                <Link
-                  key={i}
-                  href={route.href}
-                  className="text-sm font-medium transition-colors"
-                >
-                  {route.label}
-                </Link>
-              </Button>
-            ))}
-          </nav> */}
           <div className="flex items-center">
-
-            
             <Button
               variant="ghost"
               size="icon"
@@ -69,7 +67,15 @@ const Header = () => {
               <Moon className="absolute h-6 w-6 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
               <span className="sr-only">Toggle Theme</span>
             </Button>
-            <ProfileButton />
+            {!shouldHideProfileOrLogin && (
+              user.token ? (
+                <ProfileButton />
+              ) : (
+                <div className="flex gap-x-2">
+                  <Button>Login</Button>
+                </div>
+              )
+            )}
           </div>
         </div>
       </Container>

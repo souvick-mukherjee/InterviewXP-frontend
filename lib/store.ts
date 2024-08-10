@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import autocompleteReducer from './features/autocomplete/autocompleteSlice';
+import userReducer from './features/user/userSlice';
 
 export const makeStore = () => {
     return configureStore({
         reducer: {
-          autocomplete: autocompleteReducer
+          autocomplete: autocompleteReducer,
+          user: userReducer
         }
       });
 }
