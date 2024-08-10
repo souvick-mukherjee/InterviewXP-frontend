@@ -1,3 +1,4 @@
+"use client";
 import AutocompleteInput from "@/components/AutocompleteInput";
 import Image from "next/image";
 

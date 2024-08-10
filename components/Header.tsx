@@ -56,15 +56,7 @@ const Header = () => {
             ))}
           </nav> */}
           <div className="flex items-center">
-          <Button
-              variant="ghost"
-              size="icon"
-              className="mr-2"
-              aria-label="Shopping Cart"
-            >
-              <ShoppingCart className="h-6 w-6" />
-              <span className="sr-only">Shopping Cart</span>
-            </Button>
+
             
             <Button
               variant="ghost"
