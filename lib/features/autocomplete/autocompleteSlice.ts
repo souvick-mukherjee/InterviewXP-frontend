@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import debounce from 'lodash.debounce';
 
 
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
@@ -23,7 +24,7 @@ export const initialState: AutocompleteState = {
 // Create an async thunk for fetching suggestions
 export const fetchSuggestions = createAsyncThunk(
     'autocomplete/fetchSuggestions',
-    async (query: string) => {
+    debounce(async (query: string) => {
       const response = await axios.get(
         `${serverUrl}/api/user/companies`,
         // {
@@ -33,7 +34,7 @@ export const fetchSuggestions = createAsyncThunk(
         // }
     );
       return response.data;
-    }
+    },400)
   );
 
 // Create a slice

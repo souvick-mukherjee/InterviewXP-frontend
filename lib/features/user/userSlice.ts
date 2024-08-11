@@ -7,7 +7,6 @@ interface UserState {
   fullName: string;
   email: string;
   role: string;
-  token: string | null;
 }
 
 const initialState: UserState = {
@@ -15,7 +14,7 @@ const initialState: UserState = {
   fullName: '',
   email: '',
   role: '',
-  token: null,
+  
 };
 
 const userSlice = createSlice({

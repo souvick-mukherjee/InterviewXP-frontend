@@ -21,7 +21,7 @@ export default function RootLayout({
     <StoreProvider>
     <html lang="en">
       <body
-        className={`${inter.className} min-h-screen h-screen overflow-hidden flex flex-col`}
+        className={`${inter.className} min-h-screen h-screen overflow-auto flex flex-col`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Header />

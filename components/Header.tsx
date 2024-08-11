@@ -68,11 +68,11 @@ const Header = () => {
               <span className="sr-only">Toggle Theme</span>
             </Button>
             {!shouldHideProfileOrLogin && (
-              user.token ? (
+              user.id ? (
                 <ProfileButton />
               ) : (
                 <div className="flex gap-x-2">
-                  <Button>Login</Button>
+                  <Button asChild><Link href='/authenticate'>Login</Link></Button>
                 </div>
               )
             )}
